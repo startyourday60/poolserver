@@ -12,6 +12,8 @@ namespace Crypto
     BinaryData SHA256(BinaryData data);
     BinaryData SHA256(std::string data);
     BinaryData SHA256D(BinaryData data);
+
+	BinaryData GOSTD(BinaryData data);
 }
 
 #endif
