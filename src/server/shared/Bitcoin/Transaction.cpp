@@ -7,6 +7,6 @@ namespace Bitcoin
     {
         ByteBuffer buf;
         buf << *this;
-        return Crypto::SHA256D(buf.Binary());
+        return Crypto::GOSTD(buf.Binary());
     }
 }
