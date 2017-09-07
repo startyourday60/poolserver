@@ -10,6 +10,7 @@
 namespace Crypto
 {
 	BinaryData GOSTD(BinaryData data);
-}
+	BinaryData GOSTD(BinaryData data1, BinaryData data2); // for merkle
+ }
 
 #endif
