@@ -9,8 +9,8 @@
 
 namespace Crypto
 {
-	BinaryData GOSTD(BinaryData data);
-	BinaryData GOSTD(BinaryData data1, BinaryData data2); // for merkle
+	BinaryData GOSTD(BinaryData data); // for Merkle
+	BinaryData GOSTDBlock (BinaryData data); // for 80 bytes header	
  }
 
 #endif
