@@ -15,8 +15,8 @@ namespace Bitcoin
         {
             for (uint32 i = 0; i < size; i += 2)
             {
-                uint32 i2 = std::min(i+1, size-1);
-                merkleTree.push_back(Crypto::GOSTD(Util::Join(merkleTree[j+i], merkleTree[j+i2])));
+              //  uint32 i2 = std::min(i+1, size-1);
+                merkleTree.push_back(Crypto::GOSTD(Util::Join(merkleTree[j+i], merkleTree[j+i])));
             }
             
             j += size;
@@ -35,7 +35,7 @@ namespace Bitcoin
         uint32 j = 0;
         for (uint32 size = tx.size(); size > 1; size = (size+1)/2)
         {
-            merkleTree[j+size] = Crypto::GOSTD(Util::Join(merkleTree[j], merkleTree[j+1]));
+            merkleTree[j+size] = Crypto::GOSTD(Util::Join(merkleTree[j], merkleTree[j]));
             j += size;
         }
         
