@@ -1,5 +1,5 @@
-#ifndef BITCOIN_TRANSACTION_H_
-#define BITCOIN_TRANSACTION_H_
+#ifndef GOSTCOIN_TRANSACTION_H_
+#define GOSTCOIN_TRANSACTION_H_
 
 #include "Common.h"
 #include "ByteBuffer.h"
@@ -7,7 +7,7 @@
 #include "Script.h"
 #include "Crypto.h"
 
-namespace Bitcoin
+namespace Gostcoin
 {
     class OutPoint
     {

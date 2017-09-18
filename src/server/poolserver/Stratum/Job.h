@@ -1,7 +1,7 @@
 #ifndef STRATUM_JOB_H_
 #define STRATUM_JOB_H_
 
-#include "Bitcoin.h"
+#include "Gostcoin.h"
 #include "Crypto.h"
 #include "Util.h"
 #include "BigNum.h"
@@ -14,7 +14,7 @@ namespace Stratum
     {
     public:
         uint64 diff;
-        Bitcoin::BlockPtr block;
+        Gostcoin::BlockPtr block;
         BinaryData coinbase1;
         BinaryData coinbase2;
         std::set<uint64> shares;

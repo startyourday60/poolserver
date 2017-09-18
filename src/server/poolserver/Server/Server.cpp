@@ -5,7 +5,7 @@
 #include "Stratum/Server.h"
 #include "ServerDatabaseEnv.h"
 #include "Crypto.h"
-#include "Bitcoin.h"
+#include "Gostcoin.h"
 #include "DataMgr.h"
 #include "NetworkMgr.h"
 #include "Exception.h"

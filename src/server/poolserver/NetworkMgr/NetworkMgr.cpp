@@ -15,20 +15,20 @@ NetworkMgr::~NetworkMgr()
         delete _cons[i];
 }
 
-// Bitcoin daemon connection
+// Gostcoin daemon connection
 void NetworkMgr::Connect(JSONRPCConnectionInfo coninfo)
 {
-    JSONRPC* bitcoinrpc = new JSONRPC();
-    bitcoinrpc->Connect(coninfo);
+    JSONRPC* gostcoinrpc = new JSONRPC();
+    gostcoinrpc->Connect(coninfo);
     
-    JSON response = bitcoinrpc->Query("getinfo");
+    JSON response = gostcoinrpc->Query("getinfo");
     
     if (response["error"].GetType() != JSON_NULL)
-        throw Exception(Util::FS("Failed to get response from bitcoin rpc: %s", response["error"].GetString().c_str()));
+        throw Exception(Util::FS("Failed to get response from gostcoin rpc: %s", response["error"].GetString().c_str()));
     
-    sLog.Info(LOG_SERVER, "Connected to Bitcoin RPC at %s:%s", coninfo.Host.c_str(), coninfo.Port.c_str());
+    sLog.Info(LOG_SERVER, "Connected to Gostcoin RPC at %s:%s", coninfo.Host.c_str(), coninfo.Port.c_str());
     
-    _cons.push_back(bitcoinrpc);
+    _cons.push_back(gostcoinrpc);
     
     // Fetch block height on first connection
     if (_cons.size() == 1)
@@ -50,7 +50,7 @@ void NetworkMgr::UpdateBlockTemplate()
             if (response["height"].GetInt() < _blockHeight)
                 continue;
             
-            Bitcoin::BlockPtr block = Bitcoin::BlockPtr(new Bitcoin::Block());
+            Gostcoin::BlockPtr block = Gostcoin::BlockPtr(new Gostcoin::Block());
             
             block->version = response["version"].GetInt();
             block->prevBlockHash = Util::Reverse(Util::ASCIIToBin(response["previousblockhash"].GetString()));
@@ -61,13 +61,13 @@ void NetworkMgr::UpdateBlockTemplate()
             
             // Add coinbase tx
             BinaryData pubkey = Util::ASCIIToBin(sConfig.Get<std::string>("MiningAddress"));
-            block->tx.push_back(Bitcoin::CreateCoinbaseTX(_blockHeight, pubkey, response["coinbasevalue"].GetInt()));
+            block->tx.push_back(Gostcoin::CreateCoinbaseTX(_blockHeight, pubkey, response["coinbasevalue"].GetInt()));
             
             // Add other transactions
             JSON trans = response["transactions"];
             for (uint64 tidx = 0; tidx < trans.Size(); ++tidx) {
                 ByteBuffer txbuf(Util::ASCIIToBin(trans[tidx]["data"].GetString()));
-                Bitcoin::Transaction tx;
+                Gostcoin::Transaction tx;
                 txbuf >> tx;
                 block->tx.push_back(tx);
             }
@@ -89,7 +89,7 @@ void NetworkMgr::UpdateBlockTemplate()
 }
 
 // Submit new block
-bool NetworkMgr::SubmitBlock(Bitcoin::Block block)
+bool NetworkMgr::SubmitBlock(Gostcoin::Block block)
 {
     // Serialize block
     ByteBuffer blockbuf;

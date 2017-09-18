@@ -1,5 +1,5 @@
-#ifndef BITCOIN_H_
-#define BITCOIN_H_
+#ifndef GOSTCOIN_H_
+#define GOSTCOIN_H_
 
 #include "Block.h"
 #include "Transaction.h"
@@ -8,7 +8,7 @@
 #include "BigNum.h"
 #include <gmpxx.h>
 
-namespace Bitcoin
+namespace Gostcoin
 {
     inline BigInt TargetToDiff(BigInt val)
     {
@@ -40,7 +40,7 @@ namespace Bitcoin
         ByteBuffer scriptsig;
         scriptsig << blockHeight << extranonce_ph;
         
-        Bitcoin::OutPoint outpoint;
+        Gostcoin::OutPoint outpoint;
         outpoint.hash.resize(32, 0);
         outpoint.n = 0xFFFFFFFF;
         
@@ -51,7 +51,7 @@ namespace Bitcoin
         
         TxOut txout;
         txout.value = value;
-        txout.scriptPubKey = Bitcoin::Script(pubkey) + Bitcoin::OP_CHECKSIG;
+        txout.scriptPubKey = Gostcoin::Script(pubkey) + Gostcoin::OP_CHECKSIG;
         
         Transaction tx;
         tx.version = 1;

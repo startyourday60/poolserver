@@ -1,5 +1,5 @@
-#ifndef BITCOIN_BLOCK_H_
-#define BITCOIN_BLOCK_H_
+#ifndef GOSTCOIN_BLOCK_H_
+#define GOSTCOIN_BLOCK_H_
 
 #include "Common.h"
 #include "Transaction.h"
@@ -7,7 +7,7 @@
 #include <vector>
 #include <algorithm>
 
-namespace Bitcoin
+namespace Gostcoin
 {
     class BlockHeader
     {

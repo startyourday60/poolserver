@@ -199,14 +199,14 @@ namespace Stratum
         }
         
         // Copy block we are working on
-        Bitcoin::Block block = *job->block;
+        Gostcoin::Block block = *job->block;
         
         // Start assembling the block
         timebuf >> block.time;
         noncebuf >> block.nonce;
         
         // Assemble coinbase
-        Bitcoin::Transaction coinbasetx;
+        Gostcoin::Transaction coinbasetx;
         ByteBuffer coinbasebuf;
         coinbasebuf << job->coinbase1 << _extranonce << extranonce2 << job->coinbase2;
         coinbasebuf >> coinbasetx;
@@ -335,8 +335,8 @@ namespace Stratum
         Job* job = new Job();
         job->block = _server->GetWork();
         job->diff = _diff;
-        job->jobTarget = Bitcoin::DiffToTarget(job->diff);
-        job->blockTarget = Bitcoin::TargetFromBits(job->block->bits);
+        job->jobTarget = Gostcoin::DiffToTarget(job->diff);
+        job->blockTarget = Gostcoin::TargetFromBits(job->block->bits);
         
         // Serialize transaction
         ByteBuffer coinbasebuf;

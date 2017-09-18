@@ -1,6 +1,6 @@
 #include "Block.h"
 
-namespace Bitcoin
+namespace Gostcoin
 {
     void Block::BuildMerkleTree()
     {

@@ -1,7 +1,7 @@
 #include "Transaction.h"
 #include "Util.h"
 
-namespace Bitcoin
+namespace Gostcoin
 {
     BinaryData Transaction::GetHash()
     {

@@ -1,10 +1,10 @@
 #ifndef NETWORKMGR_H_
 #define NETWORKMGR_H_
 
-// Provides high level interaction with bitcoin daemon
+// Provides high level interaction with gostcoin daemon
 
 #include "JSONRPC.h"
-#include "Bitcoin.h"
+#include "Gostcoin.h"
 #include "Log.h"
 
 #include <vector>
@@ -14,7 +14,7 @@
 
 using namespace boost;
 
-typedef boost::function<void (Bitcoin::BlockPtr /*blockTmpl*/, bool /*newBlock*/)> FBlockNotify;
+typedef boost::function<void (Gostcoin::BlockPtr /*blockTmpl*/, bool /*newBlock*/)> FBlockNotify;
 
 class NetworkMgr
 {
@@ -36,14 +36,14 @@ public:
     NetworkMgr(asio::io_service& io_service);
     ~NetworkMgr();
     
-    // Bitcoin daemon connection
+    // Gostcoin daemon connection
     void Connect(JSONRPCConnectionInfo coninfo);
     
     // Get new block template
     void UpdateBlockTemplate();
     
     // Submit new block
-    bool SubmitBlock(Bitcoin::Block block);
+    bool SubmitBlock(Gostcoin::Block block);
     
     // Checking for blocks
     void BlockCheck();
@@ -70,11 +70,11 @@ private:
     boost::mutex _mtxBlockCheck;
     uint32 _blockHeight;
     
-    // Connections to bitcoin rpc
+    // Connections to gostcoin rpc
     std::vector<JSONRPC*> _cons;
     
     // Current block template
-    Bitcoin::BlockPtr _curBlockTmpl;
+    Gostcoin::BlockPtr _curBlockTmpl;
     boost::mutex _mtxBlockTmpl;
     
     // ASIO

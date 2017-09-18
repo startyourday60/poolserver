@@ -1,10 +1,10 @@
-#ifndef BITCOIN_VARINT_H_
-#define BITCOIN_VARINT_H_
+#ifndef GOSTCOIN_VARINT_H_
+#define GOSTCOIN_VARINT_H_
 
 #include "Common.h"
 #include "ByteBuffer.h"
 
-namespace Bitcoin
+namespace Gostcoin
 {
     class VarInt
     {

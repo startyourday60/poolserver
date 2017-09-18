@@ -28,7 +28,7 @@ include_directories(
   ${CMAKE_SOURCE_DIR}/src/server/shared/Logging
   ${CMAKE_SOURCE_DIR}/src/server/shared/JSON
   ${CMAKE_SOURCE_DIR}/src/server/shared/JSONRPC
-  ${CMAKE_SOURCE_DIR}/src/server/shared/Bitcoin
+  ${CMAKE_SOURCE_DIR}/src/server/shared/Gostcoin
   ${Boost_INCLUDE_DIR}
   ${MYSQL_INCLUDE_DIR}
   ${GMP_INCLUDE_DIR}

@@ -7,7 +7,7 @@
 #include "Log.h"
 #include "JSON.h"
 #include "JSONRPC.h"
-#include "Bitcoin.h"
+#include "Gostcoin.h"
 #include "Util.h"
 #include "ByteBuffer.h"
 #include "NetworkMgr.h"
@@ -76,14 +76,14 @@ namespace Stratum
         }
         
         // Returns current work
-        Bitcoin::BlockPtr GetWork()
+        Gostcoin::BlockPtr GetWork()
         {
             boost::lock_guard<boost::mutex> guard(_mtxCurrentWork);
             return _currentWork;
         }
         
         // Block template update event
-        void BlockNotify(Bitcoin::BlockPtr block, bool newBlock)
+        void BlockNotify(Gostcoin::BlockPtr block, bool newBlock)
         {
             sLog.Debug(LOG_STRATUM, "Received block template update");
             _mtxCurrentWork.lock();
@@ -95,8 +95,8 @@ namespace Stratum
         // Resets work for all clients
         void SendBlockTmpl(bool resetWork);
         
-        // Submits block to bitcoind
-        bool SubmitBlock(Bitcoin::Block block);
+        // Submits block to gostcoind
+        bool SubmitBlock(Gostcoin::Block block);
         
         // Disconnects client
         void Disconnect(ClientPtr client)
@@ -173,7 +173,7 @@ namespace Stratum
         boost::mutex _mtxBans;
         
         // Work
-        Bitcoin::BlockPtr _currentWork;
+        Gostcoin::BlockPtr _currentWork;
         boost::mutex _mtxCurrentWork;
         uint32 _extranonce;
         boost::mutex _mtxExtranonce;

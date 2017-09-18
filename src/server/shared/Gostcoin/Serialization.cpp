@@ -3,10 +3,10 @@
 #include "Transaction.h"
 #include "Block.h"
 
-using namespace Bitcoin;
+using namespace Gostcoin;
 
 // VarInt
-ByteBuffer& Bitcoin::operator<<(ByteBuffer& a, VarInt& b)
+ByteBuffer& Gostcoin::operator<<(ByteBuffer& a, VarInt& b)
 {
     if (b.value < 0xfd) {
         a.Append<uint8>(b.value);
@@ -22,7 +22,7 @@ ByteBuffer& Bitcoin::operator<<(ByteBuffer& a, VarInt& b)
     }
     return a;
 }
-ByteBuffer& Bitcoin::operator>>(ByteBuffer& a, VarInt& b)
+ByteBuffer& Gostcoin::operator>>(ByteBuffer& a, VarInt& b)
 {
     uint8 size = a.Read<uint8>();
     
@@ -37,14 +37,14 @@ ByteBuffer& Bitcoin::operator>>(ByteBuffer& a, VarInt& b)
 }
 
 // Script
-ByteBuffer& Bitcoin::operator<<(ByteBuffer& a, Script& b)
+ByteBuffer& Gostcoin::operator<<(ByteBuffer& a, Script& b)
 {
     VarInt size(b.script.size());
     a << size;
     a << b.script;
     return a;
 }
-ByteBuffer& Bitcoin::operator>>(ByteBuffer& a, Script& b)
+ByteBuffer& Gostcoin::operator>>(ByteBuffer& a, Script& b)
 {
     VarInt size;
     a >> size;
@@ -53,13 +53,13 @@ ByteBuffer& Bitcoin::operator>>(ByteBuffer& a, Script& b)
 }
 
 // OutPoint
-ByteBuffer& Bitcoin::operator<<(ByteBuffer& a, OutPoint& b)
+ByteBuffer& Gostcoin::operator<<(ByteBuffer& a, OutPoint& b)
 {
     a << b.hash;
     a << b.n;
     return a;
 }
-ByteBuffer& Bitcoin::operator>>(ByteBuffer& a, OutPoint& b)
+ByteBuffer& Gostcoin::operator>>(ByteBuffer& a, OutPoint& b)
 {
     b.hash = a.ReadBinary(32);
     a >> b.n;
@@ -67,14 +67,14 @@ ByteBuffer& Bitcoin::operator>>(ByteBuffer& a, OutPoint& b)
 }
 
 // TxIn
-ByteBuffer& Bitcoin::operator<<(ByteBuffer& a, TxIn& b)
+ByteBuffer& Gostcoin::operator<<(ByteBuffer& a, TxIn& b)
 {
     a << b.prevout;
     a << b.script;
     a << b.n;
     return a;
 }
-ByteBuffer& Bitcoin::operator>>(ByteBuffer& a, TxIn& b)
+ByteBuffer& Gostcoin::operator>>(ByteBuffer& a, TxIn& b)
 {
     a >> b.prevout;
     a >> b.script;
@@ -83,13 +83,13 @@ ByteBuffer& Bitcoin::operator>>(ByteBuffer& a, TxIn& b)
 }
 
 // TxOut
-ByteBuffer& Bitcoin::operator<<(ByteBuffer& a, TxOut& b)
+ByteBuffer& Gostcoin::operator<<(ByteBuffer& a, TxOut& b)
 {
     a << b.value;
     a << b.scriptPubKey;
     return a;
 }
-ByteBuffer& Bitcoin::operator>>(ByteBuffer& a, TxOut& b)
+ByteBuffer& Gostcoin::operator>>(ByteBuffer& a, TxOut& b)
 {
     a >> b.value;
     a >> b.scriptPubKey;
@@ -97,7 +97,7 @@ ByteBuffer& Bitcoin::operator>>(ByteBuffer& a, TxOut& b)
 }
 
 // Transaction
-ByteBuffer& Bitcoin::operator<<(ByteBuffer& a, Transaction& b)
+ByteBuffer& Gostcoin::operator<<(ByteBuffer& a, Transaction& b)
 {
     a << b.version;
     
@@ -117,7 +117,7 @@ ByteBuffer& Bitcoin::operator<<(ByteBuffer& a, Transaction& b)
     
     return a;
 }
-ByteBuffer& Bitcoin::operator>>(ByteBuffer& a, Transaction& b)
+ByteBuffer& Gostcoin::operator>>(ByteBuffer& a, Transaction& b)
 {
     a >> b.version;
     
@@ -143,7 +143,7 @@ ByteBuffer& Bitcoin::operator>>(ByteBuffer& a, Transaction& b)
 }
 
 // Block
-ByteBuffer& Bitcoin::operator<<(ByteBuffer& a, Block& b)
+ByteBuffer& Gostcoin::operator<<(ByteBuffer& a, Block& b)
 {
     a << b.version;
     a << b.prevBlockHash;
@@ -160,7 +160,7 @@ ByteBuffer& Bitcoin::operator<<(ByteBuffer& a, Block& b)
     
     return a;
 }
-ByteBuffer& Bitcoin::operator>>(ByteBuffer& a, Block& b)
+ByteBuffer& Gostcoin::operator>>(ByteBuffer& a, Block& b)
 {
     a >> b.version;
     b.prevBlockHash = a.ReadBinary(32);

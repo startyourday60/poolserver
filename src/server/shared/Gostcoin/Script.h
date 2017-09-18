@@ -1,5 +1,5 @@
-#ifndef BITCOIN_SCRIPT_H_
-#define BITCOIN_SCRIPT_H_
+#ifndef GOSTCOIN_SCRIPT_H_
+#define GOSTCOIN_SCRIPT_H_
 
 #include "Common.h"
 #include "ByteBuffer.h"
@@ -7,7 +7,7 @@
 #include <boost/range/join.hpp>
 #include <vector>
 
-namespace Bitcoin
+namespace Gostcoin
 {
     enum ScriptOPCode
     {

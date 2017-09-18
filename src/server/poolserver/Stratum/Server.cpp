@@ -30,7 +30,7 @@ namespace Stratum
             _io_service.post(boost::bind(&Client::SendJob, (*it), resetWork));
     }
     
-    bool Server::SubmitBlock(Bitcoin::Block block)
+    bool Server::SubmitBlock(Gostcoin::Block block)
     {
         return NetworkMgr::Instance()->SubmitBlock(block);
     }
