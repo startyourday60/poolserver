@@ -116,7 +116,7 @@ namespace Stratum
             
             // Send difficulty update
             JSON params;
-            params.Add(int64(_diff));
+            params.Add(double(_diff)/100); // diff 1 = 0.01
             
             JSON msg;
             msg["id"];
