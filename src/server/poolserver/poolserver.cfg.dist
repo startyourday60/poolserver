@@ -27,22 +27,34 @@
 # - Line breaks should be at column 100.
 ###################################################################################################
 
-[Server Configuration]
+#[Server Configuration]
 
 ###################################################################################################
 # SERVER CONFIGURATION
 #
-#    MinDiffTime
-#        Description: Minimum diff time (ms) in main server loop.
-#        Important:   Lowering this value increases cpu load but new packets are processed faster
-#        Default:     100
 
-MinDiffTime=100
+## How many threads to use
+#ServerThreads=2
+
+## Address to send coins to
+#MiningAddress = 
+
+## Bitcoin RPC login credentials
+BitcoinRPC = 127.0.0.1;9376;gostcoinrpc;rpcpassword
+
+## Minimum share count to upload to database
+#ShareUploadMinCount=2
+
+## How many shares to upload in one query
+#ShareUploadBulkCount=50
+
+## How often to upload shares
+#ShareUploadInterval=3
 
 #
 ###################################################################################################
 
-[Stratum Configuration]
+#[Stratum Configuration]
 
 ###################################################################################################
 # STRATUM CONFIGURATION
@@ -51,19 +63,49 @@ MinDiffTime=100
 #        Description: Bind stratum to IP/Hostname
 #        Default:     "0.0.0.0" - (Bind to all IPs on the system)
 
-StratumHost="0.0.0.0"
+StratumHost = 0.0.0.0
 
 #
 #    StratumPort
 #        Description: Stratum Port
 #        Default:     3333
 
-StratumPort=3333
+StratumPort = 3333
+
+## Where to redirect getwork requests
+#StratumRedirectHost=""
+
+## Time between block checks in ms
+#StratumBlockCheckTime=2000
+
+## Time between difficulty checks in seconds
+RetargetInterval=20
+
+## Number of shares in retarget interval to trigger a difficulty check
+#RetargetSharesThreshold=20
+
+## Buffer of shares to keep (in seconds)
+#RetargetTimeBuffer=180
+
+## Target in seconds between shares
+#RetargetTimePerShare=10
+
+## Maximum allowed variance in percent before difficulty change
+#RetargetVariance=40
+
+## Difficulty at which new miner starts
+RetargetStartingDiff = 0.001
+
+## Minimum difficulty (also starting difficulty)
+RetargetMinDiff = 0.00001
+
+## Maximum difficulty we can reach
+RetargetMaxDiff = 100.0
 
 #
 ###################################################################################################
 
-[Logging Configuration]
+#[Logging Configuration]
 
 ###################################################################################################
 # LOGGING CONFIGURATION
@@ -74,7 +116,7 @@ StratumPort=3333
 #        Example:     "/var/log"
 #        Default:     "../etc" - (Save log file next to executable)
 
-LogFilePath="../etc"
+LogFilePath = ../etc
 
 #
 #    LogConsoleLevel
@@ -87,7 +129,7 @@ LogFilePath="../etc"
 #                     4 - (Debug|Set apropriate Log...DebugMask for debug output)
 
 LogConsoleLevel=4
-LogFileLevel=4
+LogFileLevel=2
 
 #
 #    LogConsoleDebugMask
@@ -99,13 +141,13 @@ LogFileLevel=4
 #                     2 - (LOG_SERVER)
 #                     4 - (LOG_DATABASE)
 
-LogConsoleDebugMask=0
+LogConsoleDebugMask=7
 LogFileDebugMask=0
 
 #
 ###################################################################################################
 
-[Database Configuration]
+#[Database Configuration]
 
 ###################################################################################################
 # DATABASE CONFIGURATION
@@ -116,12 +158,12 @@ LogFileDebugMask=0
 #        Example:     "mysql"
 #        Default:     "." - (Save log file next to executable)
 
-DatabaseDriver="mysql"
+DatabaseDriver = mysql
 
 #
 ###################################################################################################
 
-[MySQL Configuration]
+#[MySQL Configuration]
 
 ###################################################################################################
 # MYSQL CONFIGURATION
@@ -130,35 +172,42 @@ DatabaseDriver="mysql"
 #        Description: IP/Hostname of MySQL Server
 #        Default:     "127.0.0.1" - (Connect to localhost)
 
-MySQLHost="127.0.0.1"
+MySQLHost = 127.0.0.1
 
 #
 #    MySQLPort
 #        Description: MySQL Server Port
 #        Default:     3306 - (Default MySQL Server Port)
 
-MySQLPort=3306
+MySQLPort = 3306
 
 #
 #    MySQLUser
 #        Description: MySQL Server Username
 #        Default:     "" - (No Username)
 
-MySQLUser="root"
+MySQLUser = 
 
 #
 #    MySQLPass
 #        Description: MySQL Server Password
 #        Default:     "" - (No Password)
 
-MySQLPass=""
+MySQLPass = 
 
 #
 #    MySQLDatabase
 #        Description: Name of MySQL Database
 #        Default:     "poolserver"
 
-MySQLDatabase="poolserver"
+MySQLDatabase = poolserver
+
+## MySQL Sync Threads to Create
+#MySQLSyncThreads = 2
+
+## MySQL Async Threads to Create
+#MySQLAsyncThreads = 2
 
 #
 ###################################################################################################
+

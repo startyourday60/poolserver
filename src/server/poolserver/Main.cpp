@@ -43,18 +43,18 @@ bool InitConfig(int argc, char *argv[])
     
     // Stratum
     descStratum.add_options()
-        ("StratumHost,sh", boost::program_options::value<std::string>()->default_value("0.0.0.0"), "Bind IP for stratum")
+        ("StratumHost", boost::program_options::value<std::string>()->default_value("0.0.0.0"), "Bind IP for stratum")
         ("StratumRedirectHost", boost::program_options::value<std::string>()->default_value("0.0.0.0"), "Where to redirect getwork requests")
-        ("StratumPort,sp", boost::program_options::value<uint16_t>()->default_value(3333), "Stratum server port")
+        ("StratumPort", boost::program_options::value<uint16_t>()->default_value(3333), "Stratum server port")
         ("StratumBlockCheckTime", boost::program_options::value<uint32>()->default_value(2000), "Time between block checks in ms")
         ("RetargetInterval", boost::program_options::value<uint32>()->default_value(20), "Time between difficulty checks in seconds")
         ("RetargetSharesThreshold", boost::program_options::value<uint32>()->default_value(20), "Number of shares in retarget interval to trigger a difficulty check")
         ("RetargetTimeBuffer", boost::program_options::value<uint32>()->default_value(60*5), "Buffer of shares to keep (in seconds)")
         ("RetargetTimePerShare", boost::program_options::value<double>()->default_value(4), "Target in seconds between shares")
         ("RetargetVariance", boost::program_options::value<uint32>()->default_value(40), "Maximum allowed variance in percent before difficulty change")
-        ("RetargetStartingDiff", boost::program_options::value<uint32>()->default_value(2), "Difficulty at which new miner starts")
-        ("RetargetMinDiff", boost::program_options::value<uint32>()->default_value(1), "Minimum difficulty (also starting difficulty)")
-        ("RetargetMaxDiff", boost::program_options::value<uint32>()->default_value(1000000), "Maximum difficulty we can reach")
+        ("RetargetStartingDiff", boost::program_options::value<double>()->default_value(0.001), "Difficulty at which new miner starts")
+        ("RetargetMinDiff", boost::program_options::value<double>()->default_value(0.0001), "Minimum difficulty (also starting difficulty)")
+        ("RetargetMaxDiff", boost::program_options::value<double>()->default_value(1000.0), "Maximum difficulty we can reach")
     ;
     
     // Logging

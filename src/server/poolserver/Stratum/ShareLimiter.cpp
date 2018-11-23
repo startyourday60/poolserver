@@ -46,16 +46,16 @@ namespace Stratum
         double hashrate = (MEGAHASHCONST*totalWeighted)/interval;
         
         // Calculate new diff
-        uint64 newDiff = (hashrate * sConfig.Get<double>("RetargetTimePerShare")) / MEGAHASHCONST;
+        double newDiff = (hashrate * sConfig.Get<double>("RetargetTimePerShare")) / MEGAHASHCONST;
         
         // Check Limits
-        if (newDiff < sConfig.Get<uint32>("RetargetMinDiff"))
-            newDiff = sConfig.Get<uint32>("RetargetMinDiff");
-        if (newDiff > sConfig.Get<uint32>("RetargetMaxDiff"))
-            newDiff = sConfig.Get<uint32>("RetargetMaxDiff");
+        if (newDiff < sConfig.Get<double>("RetargetMinDiff"))
+            newDiff = sConfig.Get<double>("RetargetMinDiff");
+        if (newDiff > sConfig.Get<double>("RetargetMaxDiff"))
+            newDiff = sConfig.Get<double>("RetargetMaxDiff");
         
         // Calculate variance in %
-        uint32 variance = abs(((newDiff - _client->GetDifficulty()) * 100) / _client->GetDifficulty());
+        double variance = abs(((newDiff - _client->GetDifficulty()) * 100) / _client->GetDifficulty());
         
         sLog.Debug(LOG_STRATUM, "Miner new diff: %u Variance: %u%% Hashrate: %f MH/s", newDiff, variance, hashrate);
         

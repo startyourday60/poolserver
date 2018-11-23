@@ -309,7 +309,7 @@ namespace Stratum
             _workers.insert(username);
             
             MySQL::Field* fields = result->FetchRow();
-            _minDiff = fields[1].Get<uint32>();
+            _minDiff = fields[1].Get<double>();
             
             if (_diff < _minDiff)
                 SetDifficulty(_minDiff);

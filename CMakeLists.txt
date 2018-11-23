@@ -1,8 +1,6 @@
-# Project name!
-project(PoolServer)
-
-# CMake policies
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required ( VERSION 2.8.12 )
+cmake_policy( VERSION 2.8.12 )
+project( "PoolServer" )
 
 # Set macros
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/macros")
@@ -25,10 +23,10 @@ set(Boost_USE_MULTITHREADED      ON)
 set(Boost_USE_STATIC_RUNTIME     OFF)
 set(Boost_ALL_DYN_LINK           ON)
 
-SET(Boost_ADDITIONAL_VERSIONS "1.49" "1.49.0")
+SET(Boost_ADDITIONAL_VERSIONS "1.62" "1.62.0")
 
 # Boost
-find_package(Boost 1.49 COMPONENTS thread chrono program_options date_time system REQUIRED)
+find_package(Boost 1.62 COMPONENTS thread chrono program_options date_time system REQUIRED)
 message(status "** Boost Include: ${Boost_INCLUDE_DIR}")
 message(status "** Boost Libraries: ${Boost_LIBRARY_DIRS}")
 message(status "** Boost Libraries: ${Boost_LIBRARIES}")
@@ -43,6 +41,9 @@ find_package(GMP REQUIRED)
 
 # OpenSSL
 find_package(OpenSSL REQUIRED)
+
+# pthreads
+find_package(Threads)
 
 # Print options
 include(cmake/showoptions.cmake)

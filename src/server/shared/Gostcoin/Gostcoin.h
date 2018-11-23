@@ -12,8 +12,7 @@ namespace Gostcoin
 {
     inline BigInt TargetToDiff(BigInt val)
     {
-		// we consider diff=1 as 0.01
-        static BigInt c("0x0000ffff00000000000000000000000000000000000000000000000000000000");
+        static BigInt c("0x00000000ffff0000000000000000000000000000000000000000000000000000");
         return (c / val);
     }
     

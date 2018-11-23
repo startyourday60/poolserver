@@ -47,6 +47,7 @@ target_link_libraries(poolserver
   ${GMP_LIBRARIES}
   ${GMPXX_LIBRARIES}
   ${OPENSSL_LIBRARIES}
+  ${CMAKE_THREAD_LIBS_INIT}
 )
 
 # Install
