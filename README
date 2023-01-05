@@ -41,3 +41,7 @@ Usage:
   --MySQLDatabase arg (=poolserver) MySQL Database
   --MySQLSyncThreads arg (=2)       MySQL Sync Threads to Create
   --MySQLAsyncThreads arg (=2)      MySQL Async Threads to Create
+
+===
+P.S 
+Этот пул никогда не работал. Слова orignal'а. Настоящий пул не этот.
