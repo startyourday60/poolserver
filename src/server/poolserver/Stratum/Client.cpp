@@ -303,7 +303,7 @@ namespace Stratum
         std::string username = msg["params"][0].GetString();
         std::string password = msg["params"][1].GetString();
         
-        MySQL::QueryResult result = sDatabase.Query(Util::FS("SELECT `id`, `mindiff` FROM `pool_worker` WHERE `username` = '%s' and `password` = '%s'", sDatabase.Escape(username).c_str(), sDatabase.Escape(password).c_str()).c_str());
+        MySQL::QueryResult result = sDatabase.Query(Util::FS("SELECT `account_id`, `mindiff` FROM `pool_worker` WHERE `username` = '%s' and `password` = '%s'", sDatabase.Escape(username).c_str(), sDatabase.Escape(password).c_str()).c_str());
         
         if (result) {
             _workers.insert(username);
