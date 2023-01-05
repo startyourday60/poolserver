@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `pool_worker`;
 CREATE TABLE IF NOT EXISTS `pool_worker`
 (
-  `id` INT(255) NOT NULL AUTO_INCREMENT,
+  `account_id` INT(255) NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(50) DEFAULT NULL,
   `password` VARCHAR(50) DEFAULT NULL,
   `mindiff` int(10) unsigned NOT NULL DEFAULT '1',
