@@ -13,6 +13,7 @@ namespace Gostcoin
     inline BigInt TargetToDiff(BigInt val)
     {
         static BigInt c("0x00000000ffff0000000000000000000000000000000000000000000000000000");
+        if (val == 0) return c;
         return (c / val);
     }
     
