@@ -4,9 +4,10 @@ PoolServer
 Cryptocurrency mining pool written in C++ for speed. Supports Stratum.
 
 Dependencies:
-  Boost Libraries (http://www.boost.org/)
+  Boost Libraries (http://www.boost.org/) (1.62! ubuntu zetty is fine)
   MySQL Library (http://www.mysql.com/)
   CMake (http://www.cmake.org/)
+  # libboost-all-dev libmysqld-dev libssl-dev libgmp-dev
 
 Building on linux:
   # cd /path/to/source
